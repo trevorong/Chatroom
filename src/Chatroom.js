@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import Message from './Message.js';
+import useKeyboardEvent from './useKeyboardEvent.js';
 
 function Chatroom (props) {
     const [messages, setMessages] = useState([]);
@@ -9,7 +10,7 @@ function Chatroom (props) {
 
     const displayMessages = (inputList) => inputList.map((item)=>
     <li key={item.id}>
-        <Message content={item.content} position={item.pos} sender={item.sender}/>
+        <Message content={item.content} position={item.pos} sender={item.sender} date={item.date}/>
     </li>
     );
 
@@ -48,24 +49,28 @@ function Chatroom (props) {
         let twelveHr = hrs >= 12 ? "PM" : "AM";
         if (hrs > 12) {
             hrs -= 12;
-        } else if (hrs == 0) {
+        } else if (hrs === 0) {
             hrs += 12;
         }
         
         return hrs + ':' + date.getMinutes() + ' ' + twelveHr;
     }
 
-    return (
-    <div className="chatroom col-container flex-grow">
-        <ul>
-            {handleDisplay()}
-        </ul>
+    useKeyboardEvent('Enter', sendMsg, 'input-field');
 
-        <div className="input-group mb-3">
-            <input type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input" aria-describedby="basic-addon1"/>
-            <button type="button" className="btn btn-primary" onClick={sendMsg} id="basic-addon1">Send</button>
+    return (
+        <div className="chatroom col-container flex-grow">
+            <ul>
+                {handleDisplay()}
+            </ul>
+
+            <div className="input-group mb-3">
+                <input id="input-field" type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input" aria-describedby="basic-addon1"/>
+
+                <button type="button" className="btn btn-primary" onClick={sendMsg} id="basic-addon1">Send</button>
+            </div>
         </div>
-    </div>);
+    );
 }
 
 export default Chatroom;

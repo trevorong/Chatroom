@@ -63,10 +63,11 @@ ul {
 }
 
 .msg-body {
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
 
-  width: 50%;
+  color: white;
+
   align-self: flex-end;
 }
 
