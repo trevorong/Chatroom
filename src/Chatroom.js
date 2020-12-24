@@ -1,12 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 import Message from './Message.js';
 import useKeyboardEvent from './useKeyboardEvent.js';
 
 function Chatroom (props) {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        {
+            id: "msg-#0",
+            content: "Hello world!",
+            position: 1,
+            sender: "Trevor",
+            date: "9:00 AM",
+        }
+    ]);
     const [input,setInput] = useState('');
-    const [numMsgs, setNumMsgs] = useState(0);
+    const [numMsgs, setNumMsgs] = useState(1);
 
     const displayMessages = (inputList) => inputList.map((item)=>
     <li key={item.id}>
@@ -52,15 +60,25 @@ function Chatroom (props) {
         } else if (hrs === 0) {
             hrs += 12;
         }
+
+        let mins = date.getMinutes();
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
         
-        return hrs + ':' + date.getMinutes() + ' ' + twelveHr;
+        return hrs + ':' + mins + ' ' + twelveHr;
     }
 
     useKeyboardEvent('Enter', sendMsg, 'input-field');
 
+    const container = useRef(null);
+    useEffect(() => {
+        container.current.scrollTop += 100;
+    }, [sendMsg]);
+
     return (
         <div className="chatroom col-container flex-grow">
-            <ul>
+            <ul className="msg-list" ref={container}>
                 {handleDisplay()}
             </ul>
 

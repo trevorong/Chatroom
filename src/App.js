@@ -1,7 +1,7 @@
 import './App.css';
 
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ChatModule from './ChatModule.js';
 
 function App() {
@@ -19,8 +19,10 @@ function App() {
 export default App;
 
 const Home = () => (
-  <div>
+  <div className="App border border-primary rounded">
     <h1> Placeholder Home Page </h1>
+    <input type="text" className="form-control" placeholder="Username" aria-label="Username"></input>
+    <input type="text" className="form-control" placeholder="Password" aria-label="Password"></input>
     <Link to="/room">Enter a room</Link>
   </div>
 );

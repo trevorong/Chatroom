@@ -33,7 +33,7 @@ function ChatModule() {
 
   return (
       <div className="App">
-        <div className="row-container flex-grow"> 
+        <div className="chat-module row-container flex-grow"> 
           <div className="col-container border">
             <input type="text" className="form-control" placeholder="Search" onChange={(event)=>setSearchVal(event.target.value)} value={searchVal} aria-label="Search bar"></input>
             <ul> placeholder for list of chatrooms</ul>
