@@ -56,6 +56,13 @@ ul {
   max-height: 100vh;
 }
 
+.login-module {
+  max-width: 500px;
+  max-height: 500px;
+  
+  padding: 25px;
+}
+
 .chatroom {
   justify-content: flex-end;
 }
