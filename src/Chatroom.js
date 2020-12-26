@@ -8,7 +8,7 @@ function Chatroom (props) {
         {
             id: "msg-#0",
             content: "Hello world!",
-            position: 1,
+            position: "left",
             sender: "Trevor",
             date: "9:00 AM",
         }
@@ -18,7 +18,7 @@ function Chatroom (props) {
 
     const displayMessages = (inputList) => inputList.map((item)=>
     <li key={item.id}>
-        <Message content={item.content} position={item.pos} sender={item.sender} date={item.date}/>
+        <Message content={item.content} position={item.position} sender={item.sender} date={item.date}/>
     </li>
     );
 
@@ -39,7 +39,7 @@ function Chatroom (props) {
         newMessages.push({
             id: 'msg-#' + numMsgs,
             content: input,
-            position: 0,
+            position: "right",
             sender: "You",
             date: timeSent,
         });

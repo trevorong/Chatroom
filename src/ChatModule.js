@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Chatroom from './Chatroom.js';
 
 function ChatModule() {
-  const [rooms, setRooms] = useState([]);
-  const [currID, setCurrID] = useState("cr-01");
+  // const [rooms, setRooms] = useState([]);
+  // const [currID, setCurrID] = useState("cr-01");
   const [searchVal, setSearchVal] = useState('');
 
   // const addRoom = () => {
@@ -33,7 +33,7 @@ function ChatModule() {
 
   return (
     <div className="chat-module row-container flex-grow"> 
-      <div className="hide-mobile col-container border">
+      <div className="chats-list hide-mobile col-container border">
         <input type="text" className="form-control" placeholder="Search" onChange={(event)=>setSearchVal(event.target.value)} value={searchVal} aria-label="Search bar"></input>
         <ul> placeholder list of chats</ul>
       </div>
