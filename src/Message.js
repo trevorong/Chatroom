@@ -6,29 +6,29 @@ function Message (props) {
     const date = props.date;
     const position = props.position;
 
-    return (
+    const displayMessage = () =>
+    {
+        return position === "right" ?
         <div className="col-container">
-            {position === "right" ?
-                <div className="msg-self">
-                    <div className="msg-sender">
-                        {sender} {date}
-                    </div>
-                    <div className={`msg-body btn btn-primary rounded-pill`}>
-                        {content}
-                    </div>
-                </div>
-                :
-                <div className="msg-other">
-                    <div className="msg-sender">
-                        {sender} {date}
-                    </div>
-                    <div className={`msg-body btn btn-primary rounded-pill`}>
-                        {content}
-                    </div>
-                </div>
-            }
+            <div className="msg-self msg-sender">
+                {sender} {date}
+            </div>
+            <div className={`msg-self msg-body btn btn-primary rounded-pill`}>
+                {content}
+            </div>
         </div>
-    );
+        :
+        <div className="col-container">
+            <div className="msg-other msg-sender">
+                {sender} {date}
+            </div>
+            <div className={`msg-other msg-body btn btn-primary rounded-pill`}>
+                {content}
+            </div>
+        </div>
+    }   
+
+    return displayMessage();
 }
 
 export default Message;
