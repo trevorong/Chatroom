@@ -8,7 +8,7 @@ import LoginModule from './LoginModule.js';
 function App() {
   return (
     <Router>
-      <div class="App">
+      <div className="App">
         <Switch>
           <Route path="/" exact component={LoginModule} />
           <Route path="/room"  component={ChatModule} />

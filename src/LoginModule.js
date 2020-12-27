@@ -8,10 +8,10 @@ function LoginModule() {
 
   return (
     <div className="login-module border border-primary rounded">
-      <h1> Chat App </h1>
+      <h1> uMessage </h1>
       <input type="text" className="form-control" placeholder="Username" onChange={(event)=>setNameVal(event.target.value)} value={nameVal} aria-label="Username"></input>
       <input type="text" className="form-control" placeholder="Password" onChange={(event)=>setPassword(event.target.value)} value={password} aria-label="Password"></input>
-      <Link to= "/room">Enter a room</Link>
+      <Link to= "/room" className="btn btn-primary">Enter a room</Link>
     </div>
   );
 }

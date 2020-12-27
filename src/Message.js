@@ -13,7 +13,7 @@ function Message (props) {
             <div className="msg-self msg-sender">
                 {sender} {date}
             </div>
-            <div className={`msg-self msg-body btn btn-primary rounded-pill`}>
+            <div className="msg-self msg-body btn btn-primary rounded-pill">
                 {content}
             </div>
         </div>
@@ -22,7 +22,7 @@ function Message (props) {
             <div className="msg-other msg-sender">
                 {sender} {date}
             </div>
-            <div className={`msg-other msg-body btn btn-primary rounded-pill`}>
+            <div className="msg-other msg-body btn btn-outline-primary rounded-pill">
                 {content}
             </div>
         </div>
