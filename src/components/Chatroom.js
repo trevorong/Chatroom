@@ -22,11 +22,8 @@ function Chatroom (props) {
     }
 
     const sendMsg = () => {
-        let newMessages = messages;
+        setInput('');
         let timeSent = getFormattedTime();
-        let newNum = numMsgs;
-        newNum++;
-
         const msg = {
             id: 'msg-#' + numMsgs,
             content: input,
@@ -34,19 +31,12 @@ function Chatroom (props) {
             sender: "You",
             date: timeSent,
         }
-        newMessages.push(msg);
         db.collection("messages").add(msg)
             .then((ref) => {console.log("Added doc with ID: ", ref.id)})
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-
-        setMessages(newMessages);
-        setNumMsgs(newNum);
-        setInput('');
-
-        console.log(messages);
-    }
+    };
 
     const getFormattedTime = () => {
         let date = new Date();
@@ -80,14 +70,16 @@ function Chatroom (props) {
 
             console.log("messages: ", data)
           });
+        
+        return () => unsubscribe();
     }, []);
 
     useKeyboardEvent('Enter', sendMsg, 'input-field');
 
     const container = useRef(null);
     useEffect(() => {
-        container.current.scrollTop += 100;
-    }, [sendMsg]);
+        container.current.scrollTop = container.current.scrollHeight;
+    }, [numMsgs]);
 
     return (
         <div className="chatroom col-container flex-grow">
