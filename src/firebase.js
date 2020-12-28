@@ -1,6 +1,7 @@
 import firebase from 'firebase';
+import 'firebase/firestore';
 
-const firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyBtiKOxaGzznFs0IjxXKfZGrdpFKYnkwVw",
     authDomain: "chatroom-fc335.firebaseapp.com",
     projectId: "chatroom-fc335",
@@ -14,4 +15,4 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
-export { db };
+export default db;

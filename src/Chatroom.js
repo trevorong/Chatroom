@@ -3,18 +3,12 @@ import React, {useEffect, useState, useRef} from 'react';
 import Message from './Message.js';
 import useKeyboardEvent from './useKeyboardEvent.js';
 
+import db from './firebase.js';
+
 function Chatroom (props) {
-    const [messages, setMessages] = useState([
-        {
-            id: "msg-#0",
-            content: "Hello world!",
-            position: "left",
-            sender: "Trevor",
-            date: "9:00 AM",
-        }
-    ]);
+    const [messages, setMessages] = useState([]);
     const [input,setInput] = useState('');
-    const [numMsgs, setNumMsgs] = useState(1);
+    const [numMsgs, setNumMsgs] = useState(0);
 
     const displayMessages = (inputList) => inputList.map((item)=>
     <li key={item.id}>
@@ -29,20 +23,23 @@ function Chatroom (props) {
 
     const sendMsg = () => {
         let newMessages = messages;
-        let newNum = numMsgs;
-
         let timeSent = getFormattedTime();
-
-        console.log(timeSent);
-
+        let newNum = numMsgs;
         newNum++;
-        newMessages.push({
+
+        const msg = {
             id: 'msg-#' + numMsgs,
             content: input,
             position: "right",
             sender: "You",
             date: timeSent,
-        });
+        }
+        newMessages.push(msg);
+        db.collection("messages").add(msg)
+            .then((ref) => {console.log("Added doc with ID: ", ref.id)})
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
 
         setMessages(newMessages);
         setNumMsgs(newNum);
@@ -68,6 +65,22 @@ function Chatroom (props) {
         
         return hrs + ':' + mins + ' ' + twelveHr;
     }
+
+    // Get message data from firestore
+    useEffect(() => {
+        const unsubscribe = db
+          .collection("messages")
+          .onSnapshot((snapshot) => {
+            const data = snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setMessages(data);
+            setNumMsgs(data.length);
+
+            console.log("messages: ", data)
+          });
+    }, []);
 
     useKeyboardEvent('Enter', sendMsg, 'input-field');
 
