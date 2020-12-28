@@ -7,7 +7,7 @@ function LoginModule() {
   const [password, setPassword] = useState('');
 
   return (
-    <div className="login-module border border-primary rounded">
+    <div className="login-module border border-dark rounded">
       <h1> Enter a chatroom: </h1>
       <input type="text" className="form-control" placeholder="Username" onChange={(event)=>setNameVal(event.target.value)} value={nameVal} aria-label="Username"></input>
       <input type="text" className="form-control" placeholder="Password" onChange={(event)=>setPassword(event.target.value)} value={password} aria-label="Password"></input>

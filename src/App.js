@@ -8,7 +8,7 @@ import LoginModule from './LoginModule.js';
 function App() {
   return (
     <Router>
-      <nav id="main-navbar" className="navbar navbar-dark bg-primary">
+      <nav id="main-navbar" className="navbar fixed-top navbar-dark bg-primary">
         <div className="container-fluid">
           <Link to= "/" className="navbar-brand">uMessage</Link>
         </div>
