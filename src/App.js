@@ -2,8 +2,8 @@ import './App.css';
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import ChatModule from './ChatModule.js';
-import LoginModule from './LoginModule.js';
+import ChatModule from './components/ChatModule.js';
+import LoginModule from './components/LoginModule.js';
 
 function App() {
   return (

@@ -3,7 +3,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import Message from './Message.js';
 import useKeyboardEvent from './useKeyboardEvent.js';
 
-import db from './firebase.js';
+import db from '../firebase.js';
 
 function Chatroom (props) {
     const [messages, setMessages] = useState([]);
