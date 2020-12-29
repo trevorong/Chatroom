@@ -6,23 +6,27 @@ function Message (props) {
     const date = props.date;
     const username = props.username;
 
+    const emoji_regex = /^\s*\p{Extended_Pictographic}\s*$/u;
+    const position = (sender === username) ? "msg-self" : "msg-other";
+    const style = (position === "msg-self") ? "btn-primary" : "btn-outline-primary";
+
     const displayMessage = () =>
     {
-        return sender === username ?
+        return emoji_regex.test(content) ?
         <div className="col-container">
-            <div className="msg-self msg-sender">
+            <div className={`${position} msg-sender`}>
                 {sender} {date}
             </div>
-            <div className="msg-self msg-body btn btn-primary rounded-pill">
+            <div className={`${position} msg-body`}>
                 {content}
             </div>
         </div>
         :
         <div className="col-container">
-            <div className="msg-other msg-sender">
+            <div className={`${position} msg-sender`}>
                 {sender} {date}
             </div>
-            <div className="msg-other msg-body btn btn-outline-primary rounded-pill">
+            <div className={`${position} msg-body btn ${style} rounded-pill`}>
                 {content}
             </div>
         </div>

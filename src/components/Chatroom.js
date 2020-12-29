@@ -24,7 +24,7 @@ function Chatroom (props) {
         return displayMessages(newMessages);
     }
 
-    const sendMsg = () => {
+    const sendMsg = (input) => {
         if (input !== '') {
             setInput('');
             let timeSent = getFormattedTime();
@@ -43,6 +43,8 @@ function Chatroom (props) {
                 });
         }
     };
+
+    const sendHappyFace = () => {sendMsg('🤩')};
 
     const getFormattedTime = () => {
         let date = new Date();
@@ -64,8 +66,8 @@ function Chatroom (props) {
 
     const displaySend = () => {
         return input !== '' 
-        ? <button type="button" className="btn btn-primary" onClick={sendMsg} id="basic-addon1">Send</button>
-        : '';
+        ? <button type="button" className="btn btn-primary" onClick={() => sendMsg(input)} id="basic-addon1">Send</button>
+        : <button type="button" className="btn btn-secondary" onClick={sendHappyFace} id="basic-addon1" alt="send smiley">🤩</button>;
     }
 
     // Get message data from firestore
@@ -86,7 +88,7 @@ function Chatroom (props) {
         return () => unsubscribe();
     }, []);
 
-    useKeyboardEvent('Enter', sendMsg, 'input-field');
+    useKeyboardEvent('Enter', () => sendMsg(input), 'input-field');
 
     const container = useRef(null);
     useEffect(() => {
