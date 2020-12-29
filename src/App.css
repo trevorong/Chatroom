@@ -45,14 +45,18 @@ a, a:visited{
   flex-grow: 1;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   .hide-mobile {
     display: none;
   }
 }
 
 .chats-list {
-  max-width: 400px;
+  width: 1000px;
+  min-width: 25%;
+  max-width: 30%;
+
+  margin-top: 20px;
 }
 
 .chat-module {
@@ -80,6 +84,14 @@ a, a:visited{
 
 .msg-sender {
   font-size: calc(10px + 1vmin);
+  max-width: 50%;
+}
+
+.msg-body {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  max-width: 50%;
 }
 
 .msg-self {
@@ -90,11 +102,3 @@ a, a:visited{
   align-self: flex-start;
 }
 
-.msg-body {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.border {
-  border: 1px solid black;
-}

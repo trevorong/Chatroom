@@ -67,7 +67,7 @@ function Chatroom (props) {
     const displaySend = () => {
         return input !== '' 
         ? <button type="button" className="btn btn-primary" onClick={() => sendMsg(input)} id="basic-addon1">Send</button>
-        : <button type="button" className="btn btn-secondary" onClick={sendHappyFace} id="basic-addon1" alt="send smiley">🤩</button>;
+        : <button type="button" className="btn btn-outline-primary" onClick={sendHappyFace} id="basic-addon1" alt="send smiley">🤩</button>;
     }
 
     // Get message data from firestore
