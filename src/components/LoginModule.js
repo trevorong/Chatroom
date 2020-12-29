@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import { Link } from "react-router-dom";
 
 function LoginModule(props) {
   const [nameVal, setNameVal] = useState(props.username);
 
-  useEffect(() => { props.setUsername(nameVal) });
-
   const displayEnter = () => {
-    return nameVal !== '' 
-    ? <Link to= "/room" className="btn btn-primary">Enter a room</Link>
-    : <button className="btn btn-primary" disabled>Enter a room</button>
+    return (nameVal !== '')
+    ? <Link to= "/room" onClick={() => props.setUsername(nameVal)} className="btn btn-primary">Enter a room</Link>
+    : <button disabled className="btn btn-primary">Enter a room</button>
   }
 
   return (

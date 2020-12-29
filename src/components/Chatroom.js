@@ -35,11 +35,11 @@ function Chatroom (props) {
                 date: timeSent,
             }
             console.log(msg);
-            // db.collection("messages").add(msg)
-            //     .then((ref) => {console.log("Added doc with ID: ", ref.id)})
-            //     .catch(function(error) {
-            //         console.error("Error adding document: ", error);
-            //     });
+            db.collection("messages").add(msg)
+                .then((ref) => {console.log("Added doc with ID: ", ref.id)})
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
         }
     };
 
