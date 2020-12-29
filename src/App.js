@@ -8,7 +8,7 @@ import LoginModule from './components/LoginModule.js';
 import db from './firebase.js';
 
 function App() {
-  const [username, setUsername] = useState('test');
+  const [username, setUsername] = useState('');
 
   return (
     <Router>
@@ -22,7 +22,7 @@ function App() {
       </nav>
       <div className="App">
         <Switch>
-          <Route path="/" exact render={()=> <LoginModule setFunc={setUsername} />} />
+          <Route path="/" exact render={()=> <LoginModule username={username} setUsername={setUsername} />} />
           <Route path="/room"  render={()=> <ChatModule username={username}/>} />
           <Route render={() => <h1>404: page not found</h1>} />
         </Switch>

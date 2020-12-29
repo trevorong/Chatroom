@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import Chatroom from './Chatroom.js';
 
 function ChatModule(props) {
   const [searchVal, setSearchVal] = useState('');
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (props.username === '') history.push('/');
+  })
 
   return (
     <div className="chat-module row-container flex-grow"> 
