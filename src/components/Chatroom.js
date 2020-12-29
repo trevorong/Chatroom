@@ -19,7 +19,8 @@ function Chatroom (props) {
     );
 
     const handleDisplay = () => {
-        let newMessages = messages.sort();
+        let newMessages = messages;
+        newMessages.sort((a,b) => (a.id > b.id) ? 1 : -1);
         return displayMessages(newMessages);
     }
 
@@ -29,7 +30,7 @@ function Chatroom (props) {
             let timeSent = getFormattedTime();
 
             const msg = {
-                id: 'msg-#' + numMsgs,
+                id: numMsgs,
                 content: input,
                 sender: username,
                 date: timeSent,
