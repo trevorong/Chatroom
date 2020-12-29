@@ -5,7 +5,7 @@
 ## uMessage
 A simple chatroom app built for fun with 
 <a href="https://reactjs.org/">React</a>, 
-<a href="https://reactrouter.com/web/guides/quick-start">React Router</a>,
+<a href="https://reactrouter.com/web/guides/quick-start">React-Router</a>,
 <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap v5</a>, and 
 <a href="https://firebase.google.com/">Firebase</a>!
 <br />
@@ -13,9 +13,8 @@ A simple chatroom app built for fun with
 ### Features:
 <ul>
   <li>Fun emoji support!</li>
-  <li>Easy to use interface</li>
+  <li>Clean and intuitive interface</li>
   <li>Anonymous username/user creation</li>
-  <li>Clear distinction of user sent messages</li>
 </ul>
 
 ### TODO (potentially)
