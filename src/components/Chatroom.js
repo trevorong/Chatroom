@@ -19,7 +19,7 @@ function Chatroom (props) {
     );
 
     const handleDisplay = () => {
-        let newMessages = messages;
+        let newMessages = messages.sort();
         return displayMessages(newMessages);
     }
 
@@ -79,7 +79,7 @@ function Chatroom (props) {
             setMessages(data);
             setNumMsgs(data.length);
 
-            console.log("messages: ", data)
+            // console.log("messages: ", data)
           });
         
         return () => unsubscribe();
@@ -99,7 +99,7 @@ function Chatroom (props) {
             </ul>
 
             <div className="input-group mb-3">
-                <input id="input-field" type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input" aria-describedby="basic-addon1"/>
+                <input id="input-field" type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input"/>
                 {displaySend()}
             </div>
         </div>

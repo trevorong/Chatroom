@@ -11,7 +11,7 @@ function Message (props) {
         return sender === username ?
         <div className="col-container">
             <div className="msg-self msg-sender">
-                You {date}
+                {sender} {date}
             </div>
             <div className="msg-self msg-body btn btn-primary rounded-pill">
                 {content}

@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ChatModule from './components/ChatModule.js';
 import LoginModule from './components/LoginModule.js';
 
-import db from './firebase.js';
-
 function App() {
   const [username, setUsername] = useState('');
 
