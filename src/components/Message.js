@@ -26,7 +26,7 @@ function Message (props) {
             <div className={`${position} msg-sender`}>
                 {sender} {date}
             </div>
-            <div className={`${position} msg-body btn ${style} rounded-pill`}>
+            <div className={`${position} msg-body btn ${style} rounded`}>
                 {content}
             </div>
         </div>
