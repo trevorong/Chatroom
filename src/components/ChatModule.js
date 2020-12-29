@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Chatroom from './Chatroom.js';
 
-function ChatModule() {
+function ChatModule(props) {
   const [searchVal, setSearchVal] = useState('');
 
   return (
@@ -11,7 +11,7 @@ function ChatModule() {
         <ul> placeholder list of chats</ul>
       </div>
 
-      <Chatroom />
+      <Chatroom {...props}/>
     </div>
   );
 }

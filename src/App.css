@@ -8,6 +8,10 @@ ul {
   padding: 0;
 }
 
+a, a:visited{
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
   

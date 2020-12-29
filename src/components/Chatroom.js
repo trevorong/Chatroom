@@ -10,9 +10,11 @@ function Chatroom (props) {
     const [input,setInput] = useState('');
     const [numMsgs, setNumMsgs] = useState(0);
 
+    const username = props.username;
+
     const displayMessages = (inputList) => inputList.map((item)=>
     <li key={item.id}>
-        <Message content={item.content} position={item.position} sender={item.sender} date={item.date}/>
+        <Message username={username} content={item.content} sender={item.sender} date={item.date}/>
     </li>
     );
 
@@ -22,20 +24,23 @@ function Chatroom (props) {
     }
 
     const sendMsg = () => {
-        setInput('');
-        let timeSent = getFormattedTime();
-        const msg = {
-            id: 'msg-#' + numMsgs,
-            content: input,
-            position: "right",
-            sender: "You",
-            date: timeSent,
+        if (input !== '') {
+            setInput('');
+            let timeSent = getFormattedTime();
+
+            const msg = {
+                id: 'msg-#' + numMsgs,
+                content: input,
+                sender: username,
+                date: timeSent,
+            }
+            console.log(msg);
+            db.collection("messages").add(msg)
+                .then((ref) => {console.log("Added doc with ID: ", ref.id)})
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
         }
-        db.collection("messages").add(msg)
-            .then((ref) => {console.log("Added doc with ID: ", ref.id)})
-            .catch(function(error) {
-                console.error("Error adding document: ", error);
-            });
     };
 
     const getFormattedTime = () => {
@@ -54,6 +59,12 @@ function Chatroom (props) {
         }
         
         return hrs + ':' + mins + ' ' + twelveHr;
+    }
+
+    const displaySend = () => {
+        return input !== '' 
+        ? <button type="button" className="btn btn-primary" onClick={sendMsg} id="basic-addon1">Send</button>
+        : '';
     }
 
     // Get message data from firestore
@@ -89,8 +100,7 @@ function Chatroom (props) {
 
             <div className="input-group mb-3">
                 <input id="input-field" type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input" aria-describedby="basic-addon1"/>
-
-                <button type="button" className="btn btn-primary" onClick={sendMsg} id="basic-addon1">Send</button>
+                {displaySend()}
             </div>
         </div>
     );

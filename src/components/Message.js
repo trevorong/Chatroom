@@ -4,14 +4,14 @@ function Message (props) {
     const content = props.content;
     const sender = props.sender;
     const date = props.date;
-    const position = props.position;
+    const username = props.username;
 
     const displayMessage = () =>
     {
-        return position === "right" ?
+        return sender === username ?
         <div className="col-container">
             <div className="msg-self msg-sender">
-                {sender} {date}
+                You {date}
             </div>
             <div className="msg-self msg-body btn btn-primary rounded-pill">
                 {content}
