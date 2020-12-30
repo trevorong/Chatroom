@@ -8,7 +8,7 @@ function Message (props) {
 
     const emoji_regex = /^\s*\p{Extended_Pictographic}\s*$/u;
     const position = (sender === username) ? "msg-self" : "msg-other";
-    const style = (position === "msg-self") ? "btn-primary" : "btn-outline-primary";
+    const style = (position === "msg-self") ? "msg-primary" : "msg-outline-primary";
 
     const displayMessage = () =>
     {
@@ -26,7 +26,7 @@ function Message (props) {
             <div className={`${position} msg-sender`}>
                 {sender} {date}
             </div>
-            <div className={`${position} msg-body btn ${style} rounded`}>
+            <div className={`${position} msg-body msg-text ${style} rounded`}>
                 {content}
             </div>
         </div>
