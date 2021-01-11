@@ -34,6 +34,7 @@ function Chatroom (props) {
                 content: input,
                 sender: username,
                 date: timeSent,
+                true_date: Date.now(), 
             }
             console.log(msg);
             db.collection("messages").add(msg)
