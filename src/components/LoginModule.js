@@ -12,10 +12,13 @@ function LoginModule(props) {
   }
 
   return (
-    <div className="login-module border border-dark rounded">
-      <h1> Enter a chatroom: </h1>
-      <input type="text" className="form-control" placeholder="Username" onChange={(event)=>setNameVal(event.target.value)} value={nameVal} aria-label="Username"></input>
-      {displayEnter()}
+    <div>
+      <h1 id='login-title'>uMessage</h1>
+      <div className="login-module border border-dark rounded">
+        <h2> Enter a chatroom: </h2>
+        <input type="text" className="form-control" placeholder="Username" onChange={(event)=>setNameVal(event.target.value)} value={nameVal} aria-label="Username"></input>
+        {displayEnter()}
+      </div>
     </div>
   );
 }

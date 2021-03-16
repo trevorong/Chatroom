@@ -24,6 +24,9 @@ a, a:visited{
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 .App-link {
@@ -67,6 +70,8 @@ a, a:visited{
   width: 100vw;
 
   padding-top: 50px;
+
+  background: white;
 }
 
 .login-module {
@@ -75,6 +80,10 @@ a, a:visited{
   padding: 25px;
 
   background: white;
+}
+
+#login-title {
+  color: white;
 }
 
 .chatroom {
