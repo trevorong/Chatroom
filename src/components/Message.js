@@ -1,10 +1,8 @@
 import React from 'react';
 
 function Message (props) {
-    const content = props.content;
-    const sender = props.sender;
-    const date = props.date;
-    const username = props.username;
+    const { content, sender, date, username } = props;
+    // const truedate = props.true_date ? new Date(parseInt(props.true_date)).toLocaleString() : date;
 
     const emoji_regex = /^\s*\p{Extended_Pictographic}\s*$/u;
     const position = (sender === username) ? "msg-self" : "msg-other";

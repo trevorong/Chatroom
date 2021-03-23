@@ -3,24 +3,20 @@ import React, {useEffect, useState, useRef} from 'react';
 import Message from './Message.js';
 import useKeyboardEvent from './useKeyboardEvent.js';
 
-import db from '../firebase.js';
-
 function Chatroom (props) {
-    const [messages, setMessages] = useState([]);
-    const [input,setInput] = useState('');
-    const [numMsgs, setNumMsgs] = useState(0);
+    const { messages, username} = props;
+    const numMsgs = props.messages.length;
 
-    const username = props.username;
+    const [input, setInput] = useState('');
 
     const displayMessages = (inputList) => inputList.map((item)=>
-    <li key={item.id}>
-        <Message username={username} content={item.content} sender={item.sender} date={item.date}/>
-    </li>
+      <li key={item.id}>
+        <Message {...item} />
+      </li>
     );
 
     const handleDisplay = () => {
-        let newMessages = messages;
-        newMessages.sort((a,b) => (a.id > b.id) ? 1 : -1);
+        let newMessages = messages.sort((a,b) => (a.id > b.id) ? 1 : -1);
         return displayMessages(newMessages);
     }
 
@@ -34,14 +30,10 @@ function Chatroom (props) {
                 content: input,
                 sender: username,
                 date: timeSent,
-                true_date: Date.now(), 
+                timestamp: Date.now(), 
             }
-            console.log(msg);
-            db.collection("messages").add(msg)
-                .then((ref) => {console.log("Added doc with ID: ", ref.id)})
-                .catch(function(error) {
-                    console.error("Error adding document: ", error);
-                });
+
+            props.handleSendMsg(msg);
         }
     };
 
@@ -71,30 +63,20 @@ function Chatroom (props) {
         : <button type="button" className="btn btn-outline-primary" onClick={sendHappyFace} id="basic-addon1" alt="send smiley">🤩</button>;
     }
 
-    // Get message data from firestore
-    useEffect(() => {
-        const unsubscribe = db
-          .collection("messages")
-          .onSnapshot((snapshot) => {
-            const data = snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }));
-            setMessages(data);
-            setNumMsgs(data.length);
-
-            // console.log("messages: ", data)
-          });
-        
-        return () => unsubscribe();
-    }, []);
-
     useKeyboardEvent('Enter', () => sendMsg(input), 'input-field');
 
     const container = useRef(null);
     useEffect(() => {
         container.current.scrollTop = container.current.scrollHeight;
     }, [numMsgs]);
+
+    // const onScrollHandler = (e) => {
+    //     const elem = e.target;
+    //     const threshold = 20;
+    //     if (elem.scrollTop < threshold) {
+    //       setNumMsgs(numMsgs+5);
+    //     }
+    // }
 
     return (
         <div className="chatroom col-container flex-grow">
