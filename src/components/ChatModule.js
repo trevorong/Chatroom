@@ -9,6 +9,7 @@ function ChatModule(props) {
 
   const history = useHistory();
   const username = props.username;
+  const MESSAGE_CAP = 200;
 
   // redirect to home
   useEffect(() => {
@@ -34,6 +35,10 @@ function ChatModule(props) {
 
   const handleSendMsg = (msg) => {
     console.log(msg);
+    if (messages.length >= MESSAGE_CAP) {
+      console.log('messages limit has been reached');
+      return;
+    }
     db.collection("messages").add(msg)
       .then((ref) => {console.log("Added doc with ID: ", ref.id)})
       .catch(function(error) {
