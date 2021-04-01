@@ -10,24 +10,21 @@ function Message (props) {
 
     const displayMessage = () =>
     {
-        return emoji_regex.test(content) ?
-        <div className="col-container">
-            <div className={`${position} msg-sender`}>
-                {sender} {date}
-            </div>
+      return (
+      <div className="col-container">
+          <div className={`${position} msg-sender`}>
+              {sender} {date}
+          </div>
+          {emoji_regex.test(content) ?
             <div className={`${position} msg-body`}>
-                {content}
-            </div>
-        </div>
-        :
-        <div className="col-container">
-            <div className={`${position} msg-sender`}>
-                {sender} {date}
-            </div>
+              {content}
+            </div> 
+            :
             <div className={`${position} msg-body msg-text ${style} rounded`}>
-                {content}
-            </div>
-        </div>
+              {content}
+            </div>}
+      </div>
+      )
     }   
 
     return displayMessage();

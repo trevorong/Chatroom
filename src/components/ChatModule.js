@@ -71,6 +71,7 @@ function ChatModule(props) {
         <br/>
         <input type="text" className="form-control" placeholder="Search messages" onChange={(event)=>setSearchVal(event.target.value)} value={searchVal} aria-label="Search bar"></input>
         {/* <ul> placeholder for list of chats</ul> */}
+        {/* <button className='btn btn-primary' onClick={()=>history.push('/account')}>Profile</button> */}
       </div>
 
       <Chatroom {...props} handleSendMsg={handleSendMsg} messages={filterMsgs()}/>

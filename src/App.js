@@ -37,6 +37,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact render={()=> <LoginModule username={username} setUsername={setUsername} />} />
+          {/* <Route path="/profile" exact render={()=> <ProfileModule username={username}/>} /> */}
           <Route path="/room"  render={()=> <ChatModule username={username}/>} />
           <Route render={() => <h1>404: page not found</h1>} />
         </Switch>
