@@ -95,7 +95,8 @@ a, a:visited{
 }
 
 .msg-sender {
-  font-size: calc(10px + 1vmin);
+  font-size: .9375rem;
+  /* font-size: calc(10px + 1vmin); */
   max-width: 75%;
 }
 

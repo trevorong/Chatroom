@@ -3,11 +3,15 @@ import React, {useEffect, useState, useRef} from 'react';
 import Message from './Message.js';
 import useKeyboardEvent from './useKeyboardEvent.js';
 
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
+
 function Chatroom (props) {
     const { messages, username} = props;
     const numMsgs = props.messages.length;
 
     const [input, setInput] = useState('');
+    const [showEmojis, setShowEmojis] = useState(false);
 
     const displayMessages = (inputList) => inputList.map((item)=>
       <li key={item.id}>
@@ -21,20 +25,19 @@ function Chatroom (props) {
     }
 
     const sendMsg = (input) => {
-        if (input !== '') {
-            setInput('');
-            let timeSent = getFormattedTime();
-
-            const msg = {
-                id: numMsgs,
-                content: input,
-                sender: username,
-                date: timeSent,
-                timestamp: Date.now(), 
-            }
-
-            props.handleSendMsg(msg);
-        }
+      setShowEmojis(false);
+      if (input !== '') {
+          setInput('');
+          let timeSent = getFormattedTime();
+          const msg = {
+              id: numMsgs,
+              content: input,
+              sender: username,
+              date: timeSent,
+              timestamp: Date.now(), 
+          }
+          props.handleSendMsg(msg);
+      }
     };
 
     const sendHappyFace = () => {sendMsg('🤩')};
@@ -84,7 +87,19 @@ function Chatroom (props) {
                 {handleDisplay()}
             </ul>
 
+            {showEmojis && <Picker set='apple' 
+              onSelect={(emoji) => setInput(input + emoji.native)} 
+              title='' emoji='point_up'
+              style={{ 
+                position: 'absolute',
+                bottom: '80px',
+                zIndex: '20',
+                maxWidth: '100%',
+                width: '300px'
+              }} />}
+
             <div className="input-group mb-3">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowEmojis(!showEmojis)} id="basic-addon1">:&#x29;</button>
                 <input id="input-field" type="text" className="form-control" onChange={(event)=>setInput(event.target.value)} value={input} placeholder="Aa" aria-label="Message input"/>
                 {displaySend()}
             </div>
