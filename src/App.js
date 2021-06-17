@@ -29,7 +29,7 @@ function App() {
       <nav id="main-navbar" className="navbar fixed-top navbar-dark bg-dark">
         <div className="container-fluid">
           <Link to= "/" className="navbar-brand">uMessage</Link>
-          <a href="https://github.com/tr89on" className="navbar-text">
+          <a href="https://github.com/trevorong" className="navbar-text">
             made by Trevor Ong
           </a>
         </div>
